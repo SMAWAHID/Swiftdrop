@@ -1,0 +1,99 @@
+# =========================
+# OS / System files
+# =========================
+.DS_Store
+Thumbs.db
+*.log
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Python (Backend)
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Python build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# =========================
+# FastAPI / Uvicorn
+# =========================
+*.log
+uvicorn.log
+
+# =========================
+# Database
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Node / React (Frontend)
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# =========================
+# TypeScript
+# =========================
+*.tsbuildinfo
+
+# =========================
+# IDEs / Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Coverage / Testing
+# =========================
+coverage/
+htmlcov/
+.coverage
+
+# =========================
+# Misc
+# =========================
+*.pem
+*.key
+*.crt
+
+# =========================
+# Optional: logs / temp
+# =========================
+tmp/
+temp/

@@ -1,0 +1,14 @@
+fastapi==0.136.0
+uvicorn[standard]==0.34.3
+asyncpg==0.31.0
+pydantic==2.13.3
+pydantic-settings==2.10.1
+python-jose[cryptography]==3.5.0
+passlib[bcrypt]==1.7.4
+# bcrypt MUST stay at 4.0.1 — passlib 1.7.4 is incompatible with bcrypt>=4.1
+# bcrypt 4.1+ removed __about__.__version__ which passlib reads at startup.
+bcrypt==4.0.1
+python-multipart==0.0.20
+# Test stack (Improvement 8)
+pytest==8.3.3
+pytest-asyncio==0.24.0
