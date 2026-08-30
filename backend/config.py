@@ -3,7 +3,10 @@ SwiftDrop :: Configuration
 Uses pydantic-settings v2 for environment variable management.
 All secrets are read from environment — never hardcoded.
 """
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Annotated
+
+from pydantic import field_validator
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 from functools import lru_cache
 
 
@@ -21,7 +24,34 @@ class Settings(BaseSettings):
     # App
     APP_NAME: str = "SwiftDrop API"
     DEBUG: bool = False
-    CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://localhost:3000"]
+
+    # NoDecode stops pydantic-settings from JSON-parsing the env var before the
+    # validator runs. Without it, CORS_ORIGINS in a hosting dashboard has to be
+    # written as a JSON array (["https://x.app"]) and anything else crashes the
+    # app at import time with a confusing SettingsError.
+    CORS_ORIGINS: Annotated[list[str], NoDecode] = [
+        "http://localhost:5173",
+        "http://localhost:3000",
+    ]
+
+    # ── Connection pool ───────────────────────────────────────────────────────
+    # Free-tier Postgres allows far fewer concurrent connections than a
+    # self-hosted server, so these are configurable and default low.
+    DB_POOL_MIN_SIZE: int = 1
+    DB_POOL_MAX_SIZE: int = 5
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def _split_origins(cls, v: object) -> list[str]:
+        """Accept a JSON array, a comma-separated string, or a real list."""
+        if isinstance(v, str):
+            v = v.strip()
+            if v.startswith("["):
+                import json
+
+                return [str(o).strip() for o in json.loads(v)]
+            return [o.strip() for o in v.split(",") if o.strip()]
+        return list(v)  # type: ignore[arg-type]
 
     model_config = SettingsConfigDict(
         env_file=".env",

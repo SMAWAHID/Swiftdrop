@@ -1,0 +1,56 @@
+# Render Blueprint — SwiftDrop API
+# Deploy: Render dashboard → New → Blueprint → pick this repo.
+# `sync: false` values must be entered by hand in the dashboard; Render never
+# reads secrets out of the repo.
+services:
+  - type: web
+    name: swiftdrop-api
+    runtime: python
+    plan: free
+    region: oregon
+
+    # main.py imports its siblings absolutely (`from config import settings`),
+    # so backend/ has to be the working directory, not the repo root.
+    rootDir: backend
+
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+
+    # db.bootstrap creates the tables and loads demo data before the API opens
+    # its pool. It is idempotent and skips seeding once the demo users exist,
+    # so restarts do not wipe anything a visitor created.
+    startCommand: python -m db.bootstrap && uvicorn main:app --host 0.0.0.0 --port $PORT
+
+    healthCheckPath: /health
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+
+      - key: DEBUG
+        value: "false"
+
+      # asyncpg opens min_size connections eagerly — keep well under the
+      # free-tier Postgres connection ceiling.
+      - key: DB_POOL_MIN_SIZE
+        value: "1"
+      - key: DB_POOL_MAX_SIZE
+        value: "5"
+
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "60"
+
+      # Render generates a strong random value once and keeps it across deploys.
+      # Never ship the placeholder from config.py to a public URL.
+      - key: SECRET_KEY
+        generateValue: true
+
+      # ── Fill these in the Render dashboard ────────────────────────────────
+      # Neon connection string, pasted exactly as Neon gives it.
+      - key: DATABASE_URL
+        sync: false
+      # Your Vercel frontend URL, no trailing slash. Comma-separated for several
+      # (a JSON array also works).
+      - key: CORS_ORIGINS
+        sync: false
