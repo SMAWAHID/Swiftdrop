@@ -1,0 +1,14 @@
+# Runtime dependencies for the Vercel serverless function.
+# Vercel's requirements parser does not support `-r` includes, so this
+# mirrors backend/requirements.txt with the test-only packages removed.
+# Keep the pins in sync when backend/requirements.txt changes.
+
+fastapi==0.136.0
+uvicorn[standard]==0.34.3
+asyncpg==0.31.0
+pydantic==2.13.3
+pydantic-settings==2.10.1
+python-jose[cryptography]==3.5.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.20
