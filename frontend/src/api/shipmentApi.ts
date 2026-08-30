@@ -11,8 +11,12 @@ import type {
 } from '../types/shipment';
 
 const api: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? '',
-  timeout: 15_000,
+  baseURL: (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, ''),
+  // 15s is not enough against a free-tier host that suspends when idle: the
+  // first request after a quiet period has to wait out a ~50s cold start, and
+  // the old timeout turned that into a spurious "network error" on every
+  // first sign-in. ServerBanner explains the wait while this rides it out.
+  timeout: 90_000,
   headers: { 'Content-Type': 'application/json' },
 });
 

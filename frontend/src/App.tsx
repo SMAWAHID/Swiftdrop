@@ -6,6 +6,7 @@ import SignupPage      from './pages/SignupPage/SignupPage';
 import DriverDashboard from './pages/DriverDashboard/DriverDashboard';
 import VendorDashboard from './pages/VendorDashboard/VendorDashboard';
 import AdminDashboard  from './pages/AdminDashboard/AdminDashboard';
+import ServerBanner    from './components/ServerBanner/ServerBanner';
 
 // ── Route Guard ────────────────────────────────────────────────────────────────
 interface ProtectedRouteProps {
@@ -40,6 +41,8 @@ const RootRedirect: React.FC = () => {
 const App: React.FC = () => (
   <AuthProvider>
     <BrowserRouter>
+      {/* Starts waking the free-tier API before the user tries to sign in. */}
+      <ServerBanner />
       <Routes>
         <Route path="/"       element={<RootRedirect />} />
         <Route path="/login"  element={<LoginPage />} />
