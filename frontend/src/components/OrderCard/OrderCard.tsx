@@ -221,7 +221,7 @@ const OrderCard: React.FC<OrderCardProps> = ({
             disabled={isAccepting}
             aria-busy={isAccepting}
             style={{
-              background: isAccepting ? '#9ca3af' : '#1d4ed8',
+              background: isAccepting ? '#9ca3af' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
               color: '#ffffff',
               border: 'none',
               borderRadius: '8px',

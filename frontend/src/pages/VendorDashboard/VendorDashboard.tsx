@@ -167,14 +167,15 @@ const VendorDashboard: React.FC = () => {
     <div
       style={{
         minHeight: '100vh',
-        background: '#f9fafb',
+        background: 'transparent',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       }}
     >
       {/* ── Top Navigation Bar ── */}
       <header
         style={{
-          background: '#ffffff', borderBottom: '1px solid #e5e7eb',
+          background: 'linear-gradient(90deg, #fff3e8 0%, #ffffff 70%)', borderBottom: '1px solid #fed7aa',
+          boxShadow: 'inset 0 -3px 0 0 #f97316',
           padding: '0 20px', height: '56px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           position: 'sticky', top: 0, zIndex: 10,
@@ -197,7 +198,7 @@ const VendorDashboard: React.FC = () => {
           <button
             onClick={handleToggleForm}
             style={{
-              background: showForm ? '#6b7280' : '#1d4ed8',
+              background: showForm ? '#6b7280' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
               color: '#fff', border: 'none', borderRadius: '8px',
               padding: '7px 16px', fontSize: '13px', fontWeight: 600,
               cursor: 'pointer', fontFamily: 'inherit',
@@ -328,7 +329,7 @@ const VendorDashboard: React.FC = () => {
                 type="submit"
                 disabled={isBooking}
                 style={{
-                  background: isBooking ? '#9ca3af' : '#1d4ed8',
+                  background: isBooking ? '#9ca3af' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
                   color: '#fff', border: 'none', borderRadius: '8px',
                   padding: '11px 28px', fontSize: '14px', fontWeight: 600,
                   cursor: isBooking ? 'not-allowed' : 'pointer',
@@ -511,7 +512,7 @@ const VendorDashboard: React.FC = () => {
                 onClick={submitReview}
                 disabled={reviewSubmitting}
                 style={{
-                  background: reviewSubmitting ? '#9ca3af' : '#1d4ed8', color: '#fff',
+                  background: reviewSubmitting ? '#9ca3af' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)', color: '#fff',
                   border: 'none', borderRadius: '8px', padding: '8px 18px',
                   fontSize: '13px', fontWeight: 600, fontFamily: 'inherit',
                   cursor: reviewSubmitting ? 'not-allowed' : 'pointer',
