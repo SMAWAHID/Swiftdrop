@@ -15,7 +15,7 @@ body {
     Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f9fafb;
+  background: linear-gradient(180deg, #f3f5ff 0%, #f7f3ff 45%, #fff6ee 100%) fixed;
   color: #111827;
 }
 
@@ -32,4 +32,70 @@ button {
 /* Remove default input/select styles on mobile */
 input, select, textarea {
   font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+}
+
+/* ── Interactive helpers (inline styles can't do :hover) ─────────────────── */
+.sd-btn {
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.sd-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 24px -10px rgba(124, 58, 237, 0.65);
+}
+.sd-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.sd-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.sd-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 44px -24px rgba(30, 27, 75, 0.45);
+}
+
+.sd-link {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+.sd-link:hover {
+  opacity: 0.8;
+}
+
+/* ── Landing: the truck that drives along the route ─────────────────────── */
+@keyframes sd-drive {
+  0% { left: 0%; }
+  85%, 100% { left: calc(100% - 26px); }
+}
+@keyframes sd-dash {
+  to { background-position: 28px 0; }
+}
+@keyframes sd-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.55); }
+  50% { box-shadow: 0 0 0 8px rgba(249, 115, 22, 0); }
+}
+.sd-truck {
+  position: absolute;
+  top: -13px;
+  animation: sd-drive 5s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+.sd-route {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.55) 50%, transparent 50%);
+  background-size: 14px 2px;
+  animation: sd-dash 1s linear infinite;
+}
+.sd-pulse {
+  animation: sd-pulse 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-truck, .sd-route, .sd-pulse { animation: none; }
+  .sd-btn, .sd-card { transition: none; }
+  .sd-btn:hover, .sd-card:hover { transform: none; }
 }

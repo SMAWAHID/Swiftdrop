@@ -103,17 +103,18 @@ const AdminDashboard: React.FC = () => {
         padding: '8px 20px', border: 'none', borderRadius: '8px',
         fontSize: '13px', fontWeight: 600, cursor: 'pointer',
         fontFamily: 'inherit', transition: 'all 0.15s',
-        background: tab === t ? '#1d4ed8' : '#f3f4f6',
+        background: tab === t ? 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' : '#f3f4f6',
         color:      tab === t ? '#fff'    : '#6b7280',
       }}
     >{label}</button>
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f9fafb', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
       {/* Header */}
       <header style={{
-        background: '#111827', padding: '0 24px', height: '56px',
+        background: 'linear-gradient(90deg, #1e1b4b 0%, #4c1d95 60%, #6d28d9 100%)', padding: '0 24px', height: '56px',
+        boxShadow: '0 8px 24px -16px rgba(76,29,149,0.9)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         position: 'sticky', top: 0, zIndex: 10,
       }}>
@@ -225,7 +226,7 @@ const AdminDashboard: React.FC = () => {
                 onClick={refreshRevenueView}
                 disabled={refreshing}
                 style={{
-                  background: refreshing ? '#9ca3af' : '#1d4ed8', color: '#fff',
+                  background: refreshing ? '#9ca3af' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)', color: '#fff',
                   border: 'none', borderRadius: '8px', padding: '8px 14px',
                   fontSize: '12px', fontWeight: 600, fontFamily: 'inherit',
                   cursor: refreshing ? 'not-allowed' : 'pointer',

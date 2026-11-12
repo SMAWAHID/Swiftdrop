@@ -42,13 +42,13 @@ const LoginPage: React.FC = () => {
     <div style={{
       minHeight: '100vh', display: 'flex',
       alignItems: 'center', justifyContent: 'center',
-      background: 'linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)',
+      background: 'radial-gradient(60% 80% at 12% 0%, rgba(124,58,237,0.55), transparent 60%),radial-gradient(45% 60% at 90% 15%, rgba(249,115,22,0.38), transparent 60%),radial-gradient(60% 70% at 55% 110%, rgba(37,99,235,0.55), transparent 60%),#0b1736',
       padding: '24px',
     }}>
       <div style={{
         background: '#fff', borderRadius: '16px', padding: '40px',
         width: '100%', maxWidth: '400px',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+        boxShadow: '0 30px 60px -24px rgba(0,0,0,0.55)', borderTop: '5px solid #7c3aed',
       }}>
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
           <div style={{ fontSize: '36px', marginBottom: '8px' }}>🚀</div>
@@ -97,7 +97,7 @@ const LoginPage: React.FC = () => {
             width: '100%', padding: '12px', border: 'none', borderRadius: '8px',
             fontSize: '15px', fontWeight: 600, fontFamily: 'inherit',
             cursor: isLoading || !email || !password ? 'not-allowed' : 'pointer',
-            background: isLoading || !email || !password ? '#9ca3af' : '#1d4ed8',
+            background: isLoading || !email || !password ? '#9ca3af' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
             color: '#fff', transition: 'background 0.2s',
           }}>
             {isLoading ? 'Signing in…' : 'Sign In'}
@@ -106,7 +106,7 @@ const LoginPage: React.FC = () => {
 
         <p style={{ textAlign: 'center', fontSize: '13px', color: '#6b7280', marginTop: '16px' }}>
           New vendor or driver?{' '}
-          <Link to="/signup" style={{ color: '#1d4ed8', fontWeight: 500, textDecoration: 'none' }}>
+          <Link to="/signup" style={{ color: '#6d28d9', fontWeight: 500, textDecoration: 'none' }}>
             Create an account
           </Link>
         </p>

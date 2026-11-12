@@ -12,7 +12,7 @@ interface LoadingSpinnerProps {
 
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 32,
-  color = '#1d4ed8',
+  color = '#7c3aed',
   label = 'Loading…',
 }) => (
   <div

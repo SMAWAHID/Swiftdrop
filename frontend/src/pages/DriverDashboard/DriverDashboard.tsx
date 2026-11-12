@@ -91,15 +91,15 @@ const DriverDashboard: React.FC = () => {
   const delivered  = active.filter(s => s.status === 'DELIVERED');
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f9fafb', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: 'transparent', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
 
       {/* ── Header ── */}
       <header style={{
-        background: '#fff', borderBottom: '1px solid #e5e7eb',
+        background: 'linear-gradient(90deg, #eaf1ff 0%, #ffffff 70%)', borderBottom: '1px solid #bfdbfe',
+        boxShadow: 'inset 0 -3px 0 0 #2563eb, 0 1px 3px rgba(0,0,0,0.04)',
         padding: '0 20px', height: '56px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         position: 'sticky', top: 0, zIndex: 10,
-        boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontSize: '20px' }}>🚀</span>
